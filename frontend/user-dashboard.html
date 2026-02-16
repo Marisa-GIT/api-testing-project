@@ -43,7 +43,7 @@
 <button class="flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#f0f2f4] dark:bg-[#2d3748] text-[#111418] dark:text-white text-sm font-bold leading-normal tracking-[0.015em] border-none">
 <span class="truncate">user@test.com (User)</span>
 </button>
-<button class="logout-btn flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
+<button type="submit" class="logout-btn flex min-w-[84px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-primary text-white text-sm font-bold leading-normal tracking-[0.015em]">
 <span class="truncate">Logout</span>
 </button>    
 </div>
@@ -66,11 +66,6 @@
 <a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#111418] dark:text-gray-300 hover:bg-[#f0f2f4] dark:hover:bg-[#2d3748] transition-colors" href="my-expense-list.html">
 <span class="material-symbols-outlined">receipt_long</span>
 <span class="text-sm font-medium">My Expenses</span>
-</a>
-<hr class="my-2 border-[#e5e7eb] dark:border-[#2d3748]"/>
-<a class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-[#ef4444] hover:bg-[#fef2f2] dark:hover:bg-[#2d1a1a] transition-colors" href="../index.html">
-<span class="material-symbols-outlined">logout</span>
-<span class="text-sm font-medium">Logout</span>
 </a>
 </nav>
 </aside>
@@ -184,5 +179,31 @@
 </main>
 </div>
 </div>
-<script src="js/user-dashboard.js"></script
+<script src="js/auth.js"></script>
+<script>
+    // Usamos las funciones que están en auth.js
+    if (checkAuth("user")) {
+        console.log("Bienvenido al dashboard de usuario");
+        document.addEventListener("DOMContentLoaded", function () {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const role = localStorage.getItem("role");
+
+  if (isLoggedIn !== "true" || role !== "user") {
+    window.location.replace("../index.html");
+  }
+
+  const logoutBtn = document.querySelectorAll(".logout-btn");
+
+  logoutBtn.forEach(btn => {
+    btn.addEventListener("click", () => {
+      localStorage.removeItem("isLoggedIn");
+      localStorage.removeItem("role");
+      window.location.replace("../index.html");
+    });
+  });
+});
+    }
+</script>
 </body></html>
+
+

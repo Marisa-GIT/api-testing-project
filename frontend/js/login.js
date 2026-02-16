@@ -29,8 +29,6 @@ loginForm.addEventListener("submit", function (e) {
   }
 });
 
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const emailInput = document.getElementById("email");
   const passwordInput = document.getElementById("password");

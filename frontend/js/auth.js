@@ -1,19 +1,28 @@
-function login(user) {
-  localStorage.setItem("isLoggedIn", "true");
-  localStorage.setItem("role", user.role);
+// js/auth.js
+
+function checkAuth(requiredRole) {
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+    const role = localStorage.getItem("role");
+
+    if (isLoggedIn !== "true" || role !== requiredRole) {
+        window.location.replace("../index.html");
+        return false;
+    }
+    return true;
 }
 
-function logout() {
-  localStorage.clear();
-  window.location.replace("../index.html");
+function setupLogout() {
+    // Usamos delegación de eventos para que siempre funcione
+    document.addEventListener("click", (e) => {
+        const btn = e.target.closest(".logout-btn");
+        if (btn) {
+            e.preventDefault();
+            console.log("Cerrando sesión...");
+            localStorage.clear();
+            window.location.replace("../index.html");
+        }
+    });
 }
 
-function protectRoute(expectedRole) {
-  const isLoggedIn = localStorage.getItem("isLoggedIn");
-  const role = localStorage.getItem("role");
-
-  if (isLoggedIn !== "true" || role !== expectedRole) {
-    window.location.replace("../index.html");
-  }
-}
-protectRoute("user");
+// Ejecutamos el listener de logout automáticamente en cualquier página que cargue este script
+setupLogout();
