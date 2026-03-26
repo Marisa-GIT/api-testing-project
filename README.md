@@ -43,7 +43,7 @@ Simular un flujo real de testing donde:
 ## 🧩 Estructura del proyecto
 
 ```
-api-data-validator/
+API-Data-Validator/
 
 ├───api
 │   │   __init__.py
@@ -52,14 +52,14 @@ api-data-validator/
 │   │       get_users.py
 │   │
 │   ├───internal_api
-│           app.py
+│   └──     app.py
 │   
 │
 ├───database
 │   │───db_connection.py
 │   │───insert_users.py
 │   │───schema.sql
-│   │   __init__.py
+│   └──  __init__.py
 │
 ├── logs/
 │   └── api_errors.log
@@ -68,12 +68,20 @@ api-data-validator/
 │     │
 │     │─── postman/API Flask.postman_collection.json
 │     └── postman/API-jsonplaceholder.postman_collection.json
-│       
+│        
+│───screenshots/
+│    │─── console.png
+│    │─── databaseTest.png
+│    │─── databaseUsers.png
+│    │─── postmanGet.png
+│    │─── postmanPost.png
+│    └──  postmanTest.png
+│
 │
 └───validation
-│   │───  validator.py
-│   │   __init__.py
-│   
+│   │───  validator.py  
+│   └── __init__.py
+│
 │── .python-version
 ├── main.py
 ├── README.md
